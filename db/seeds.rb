@@ -7,3 +7,14 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+require "faker"
+
+case Rails.env
+when "development"
+  User.create!(username: "Akylbek", email: "abdutalipovich.s@gmail.com", password: "foobar123", password_confirmation: "foobar123")
+
+  100.times do
+    User.create!(username: Faker::Name.first_name, email: Faker::Internet.unique.email, password: "password", password_confirmation: "password")
+  end
+when "production"
+end
