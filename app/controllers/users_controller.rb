@@ -16,6 +16,30 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def connect
+    connected_user = User.find(params[:id])
+    if current_user.connect(connected_user)
+      flash[:notice] = "Connected to #{connected_user.email}."
+    else
+      flash[:alert] = "Unable to connect."
+    end
+    redirect_to user_path(connected_user)
+  end
+
+  def disconnect
+    disconnected_user = User.find(params[:id])
+    connection = current_user.connections.find_by(connected_user: disconnected_user) ||
+                 current_user.inverse_connections.find_by(user: disconnected_user)
+
+    if connection
+      connection.destroy
+      flash[:notice] = "Disconnected from #{disconnected_user.email}."
+    else
+      flash[:alert] = "Unable to disconnect."
+    end
+    redirect_to user_path(disconnected_user)
+  end
+
   # GET /users/1/edit
   def edit
   end

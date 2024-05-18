@@ -9,6 +9,24 @@
       <p><%= user&.username %></p>
     </div>
   </div>
+  <% unless current_user == user %>
+    <% unless current_user.connected?(user) %>
+      <%= button_to "Connect", connect_user_path(user), method: :post, class: "btn-primary" %>
+    <% else %>
+      <%= button_to "Disconnect", disconnect_user_path(user), method: :delete, class: "btn-danger" %>
+    <% end %>
+  <% else %>
+    <div class="mt-4">
+      <h2>Connected Users:</h2>
+      <ul class="list-outside list-disc">
+        <% current_user.all_connections.each do |user| %>
+          <li>
+            <%= link_to user.email, user %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <div class="justify-self-end">
     <%= link_to "Back", :back, class: "btn-primary" %>
   </div>

@@ -22,4 +22,30 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  has_many :connections, foreign_key: :user_id, dependent: :destroy
+  has_many :connected_users, through: :connections, source: :connected_user
+
+  has_many :inverse_connections, class_name: "Connection", foreign_key: :connected_user_id, dependent: :destroy
+  has_many :inverse_connected_users, through: :inverse_connections, source: :user
+
+  # All connections (both direct and inverse)
+  def all_connections
+    connected_users + inverse_connected_users
+  end
+
+  # Connect to another user
+  def connect(user)
+    connections.create(connected_user: user)
+  end
+
+  # Disconnect from a user
+  def disconnect(user)
+    connections.find_by(connected_user: user)&.destroy
+  end
+
+  # Check if connected to another user
+  def connected?(user)
+    connected_users.include?(user) || inverse_connected_users.include?(user)
+  end
 end

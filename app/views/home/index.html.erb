@@ -2,11 +2,11 @@
   <h2 class="py-2">This is a home page of <span class="font-bold"><%= current_user.email %></span></h2>
 
   <h3 class="font-bold">Users:</h3>
-  <ul>
+  <ul class="list-inside list-disc">
     <% @users.each do |user| %>
-      <ul>
+      <li>
         <%= link_to user.username, user_path(user) %>
-      </ul>
+      </li>
     <% end %>
   </ul>
 <% end %>
