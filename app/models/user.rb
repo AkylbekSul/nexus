@@ -29,6 +29,8 @@ class User < ApplicationRecord
   has_many :inverse_connections, class_name: "Connection", foreign_key: :connected_user_id, dependent: :destroy
   has_many :inverse_connected_users, through: :inverse_connections, source: :user
 
+  has_one_attached :avatar
+
   # All connections (both direct and inverse)
   def all_connections
     connected_users + inverse_connected_users

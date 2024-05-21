@@ -29,6 +29,15 @@
       <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
       <%= f.password_field :current_password, autocomplete: "current-password", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
+    <div class="my-5">
+      <div class="flex flex-row gap-2 py-2 items-center">
+        <%= f.label :avatar %><br />
+        <% if resource.avatar.attached? %>
+          <%= image_tag resource.avatar, class: "inline-block h-10 w-10 rounded-full ring-2 ring-white" %><br />
+        <% end %>
+      </div>
+      <%= f.file_field :avatar %>
+    </div>
     <div class="inline">
       <%= f.submit "Update", class: "btn-primary" %>
     </div>
