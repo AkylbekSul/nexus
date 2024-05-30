@@ -1,0 +1,32 @@
+{
+  "name": "Nexus",
+  "short_name": "Nexus",
+  "start_url": "/",
+  "id": "/",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "My first social app",
+  "icons": [
+    {
+      "src": "rails-icon.png",
+      "sizes": "240x240",
+      "type": "image/png"
+    }
+  ],
+  "screenshots" : [
+    {
+      "src": "wide.png",
+      "sizes": "1836x1418",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "My first social app"
+    },
+    {
+      "src": "narrow.png",
+      "sizes": "1004x1408",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "My first social app"
+    }
+  ]
+}
