@@ -23,7 +23,10 @@ class UsersController < ApplicationController
     else
       flash[:alert] = "Unable to connect."
     end
-    redirect_to user_path(connected_user)
+    # redirect_to user_path(connected_user)
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.update(connected_user) }
+    end
   end
 
   def disconnect
@@ -37,7 +40,10 @@ class UsersController < ApplicationController
     else
       flash[:alert] = "Unable to disconnect."
     end
-    redirect_to user_path(disconnected_user)
+    # redirect_to user_path(disconnected_user)
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.update(disconnected_user) }
+    end 
   end
 
   # GET /users/1/edit
