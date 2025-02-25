@@ -79,6 +79,4 @@ test:
 #
 production:
   <<: *default
-  database: nexus_production
-  username: nexus
-  password: <%= ENV["NEXUS_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
