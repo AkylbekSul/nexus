@@ -15,7 +15,9 @@
 - 👥 View the list of users you're connected to  
 - 🔐 Secure authentication and CSRF protection  
 - ✏️ Edit your profile and upload an avatar  
-- ❌ Delete your account at any time  
+- ❌ Delete your account at any time
+
+  https://github.com/user-attachments/assets/2630910c-04e5-4947-968c-7a946882df22
 
 ## Getting Started
 
@@ -29,6 +31,7 @@ rails db:create
 rails db:migrate
 rails db:seed
 rails server
+
 
 
 
